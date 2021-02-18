@@ -161,7 +161,7 @@ A következő ábrán egy rövid példán látható az algoritmus futása:
 Ezzel igazából meg is vagyunk az algoritmus megtervezésével, már csak annyi maradt hátra, hogy lekódoljuk magát az algoritmust. Ezt először rekurzív függvényhívásokkal fogjuk elvégezni, majd a rekurzív függvényhívások helyett egy kétdimenziós tömbben tároljuk el a részeredményeket.
 
 Az rekurzív algoritmus tehát a következőképpen fog kinézni, C++ nyelven megírva:
-```c++
+```cpp
 template<typename TYPE>
 int lcs(std::list<TYPE> const & list1, std::list<TYPE> const & list2)
 {
@@ -188,11 +188,11 @@ int lcs(std::list<TYPE> const & list1, std::list<TYPE> const & list2)
 }
 ```
 
-Ez a kód természetesen nem optimális, hiszen a rövidebb listák képzéséhez előbb lemásolja mindkettő listát, majd a ```pop_back``` tagfüggvény meghívásávl törli ki az utolsó elemet. Ehelyett sok más optimális megoldás elképzelhető, a C++ nyelvhez legjobban illeszkedő megoldás az lenne, ha egy-egy iterátorpárt kapna az ```lcs``` függvény, ami két konténer első elemét, illetve a végét jelezné.  
-Ekkor figyelnünk kell arra, hogy a C++ nyelvben a ```.end()``` tagfüggvény mindig az utolsó utáni elemre mutat, így hogy az utolsó elemet megkapjuk, egy elemmel hátrébb kell lépnünk.
+Ez a kód természetesen nem optimális, hiszen a rövidebb listák képzéséhez előbb lemásolja mindkettő listát, majd a `pop_back` tagfüggvény meghívásávl törli ki az utolsó elemet. Ehelyett sok más optimális megoldás elképzelhető, a C++ nyelvhez legjobban illeszkedő megoldás az lenne, ha egy-egy iterátorpárt kapna az `lcs` függvény, ami két konténer első elemét, illetve a végét jelezné.  
+Ekkor figyelnünk kell arra, hogy a C++ nyelvben a `.end()` tagfüggvény mindig az utolsó utáni elemre mutat, így hogy az utolsó elemet megkapjuk, egy elemmel hátrébb kell lépnünk.
 
 Az előző kód átírása után ezt kapjuk:
-```c++
+```cpp
 template<typename ITERATOR>
 int lcs(ITERATOR begin1, ITERATOR end1, ITERATOR begin2, ITERATOR end2)
 {
@@ -215,7 +215,7 @@ int lcs(ITERATOR begin1, ITERATOR end1, ITERATOR begin2, ITERATOR end2)
 ```
 
 Ez a kód már jól működik, és már majdnem meg tudjuk határozni a leghosszabb közös részsorozatot:  
-Azok az elemek, amelyek az algoritmus által megtalált leghosszabb közös részsorozatot alkotják, mindig szerepelnek az ```if``` elágazás első ágában - ha ezeket az elemeket összegyűjtjük, megkapunk egy lehetséges leghosszabb részsorozatot. Ezzel a megoldással az a probléma, hogy a rekurzív hívás miatt egy-egy elemet többször is vizsgál a függvény, így a végeredményben is többször szerepelne.  
+Azok az elemek, amelyek az algoritmus által megtalált leghosszabb közös részsorozatot alkotják, mindig szerepelnek az `if` elágazás első ágában - ha ezeket az elemeket összegyűjtjük, megkapunk egy lehetséges leghosszabb részsorozatot. Ezzel a megoldással az a probléma, hogy a rekurzív hívás miatt egy-egy elemet többször is vizsgál a függvény, így a végeredményben is többször szerepelne.  
 A függvény másik problémája, hogy borzasztó lassú - pont mint abban a klasszikus esetben, amikor a Fibonacci számsor elemeit rekurzívan számoltuk ki. A megoldás itt is hasonló lesz: a részeredményeket egy táblázatban fogjuk eltárolni, és az alapján állapítjuk majd meg a végeredményt.
 
 Folytatás hamarosan, nemsokára kitérünk arra is, hogy hogyan készítsük el ezt a táblázatos megoldást.
