@@ -3,8 +3,10 @@ layout: post
 title: LCS algoritmus
 ---
 
-> Jelen leírást elsősorban a BME 4. féléves Algoritmuselmélet tárgyának hallgatói számára készítettem.  
-> Természetesen mások számára is hasznos lehet, de a cikk írásánál azzal az előfeltételezéssel éltem, hogy a fő célközönség már elvégezte a BME mérnökinformatikus szak első 3 félévét.
+Ebben a posztban egy híres problémáról, és a megoldásáról fogok írni: kettő lista leghosszabb közös részsorozatát fogjuk meghatározni.
+
+Ezt a leírást elsősorban a BME 4. féléves Algoritmuselmélet tárgyának hallgatói számára készítettem.  
+Természetesen mások számára is hasznos lehet, de a cikk írásánál azzal az előfeltételezéssel éltem, hogy a fő célközönség már elvégezte a BME mérnökinformatikus szak első 3 félévét.
 
 A legtöbb programozással foglalkozó szakember, vagy az éppen csak programozni tanuló érdeklődők már találkoztak olyan programmal, ami két programokód közötti különbséget generál.
 
