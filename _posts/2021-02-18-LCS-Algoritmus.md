@@ -162,7 +162,8 @@ A következő ábrán egy rövid példán látható az algoritmus futása:
 
 Ezzel igazából meg is vagyunk az algoritmus megtervezésével, már csak annyi maradt hátra, hogy lekódoljuk magát az algoritmust. Ezt először rekurzív függvényhívásokkal fogjuk elvégezni, majd a rekurzív függvényhívások helyett egy kétdimenziós tömbben tároljuk el a részeredményeket.
 
-Az rekurzív algoritmus tehát a következőképpen fog kinézni, C++ nyelven megírva:
+A rekurzív algoritmus tehát a következőképpen fog kinézni, C++ nyelven megírva:
+
 ```cpp
 template<typename TYPE>
 int lcs(std::list<TYPE> const & list1, std::list<TYPE> const & list2)
@@ -194,6 +195,7 @@ Ez a kód természetesen nem optimális, hiszen a rövidebb listák képzéséhe
 Ekkor figyelnünk kell arra, hogy a C++ nyelvben a `.end()` tagfüggvény mindig az utolsó utáni elemre mutat, így hogy az utolsó elemet megkapjuk, egy elemmel hátrébb kell lépnünk.
 
 Az előző kód átírása után ezt kapjuk:
+
 ```cpp
 template<typename ITERATOR>
 int lcs(ITERATOR begin1, ITERATOR end1, ITERATOR begin2, ITERATOR end2)
