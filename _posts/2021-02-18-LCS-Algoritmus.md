@@ -5,12 +5,9 @@ title: LCS algoritmus
 
 Ebben a posztban algoritmuselmélettel, dinamikus programozással, és egy híres problémával fogunk foglalkozni.
 
-Ezt a leírást elsősorban a BME 4. féléves Algoritmuselmélet tárgyának hallgatói számára készítettem.  
-Természetesen mások számára is hasznos lehet, de a cikk írásánál azzal az előfeltételezéssel éltem, hogy a fő célközönség már elvégezte a BME mérnökinformatikus szak első 3 félévét.
+Ezt a leírást elsősorban a BME 4. féléves Algoritmuselmélet tárgyának hallgatói számára készítettem.  Természetesen mások számára is hasznos lehet, de a cikk írásánál azzal az előfeltételezéssel éltem, hogy a fő célközönség már elvégezte a BME mérnökinformatikus szak első 3 félévét.
 
-A legtöbb programozással foglalkozó szakember, vagy az éppen csak programozni tanuló érdeklődők már találkoztak olyan programmal, ami két programokód közötti különbséget generál.
-
-Ezt a különbséget angolul diff-ként szokás emlegetni, ami sokat segíthet, ha például egy szöveg két változata közti különbségeket akarjuk vizualizálni.
+A legtöbb programozással foglalkozó szakember, vagy az éppen csak programozni tanuló érdeklődők már találkoztak olyan programmal, ami két programokód közötti különbséget generál. Ezt a különbséget angolul diff-ként szokás emlegetni, ami sokat segíthet, ha például egy szöveg két változata közti különbségeket akarjuk vizualizálni.
 
 ![GitHub diff](/images/articles/lcs_algoritmus/01_diff_github.png)
 
@@ -64,9 +61,10 @@ Vegyünk egy egyszerű példát: legyen `L = ['A', 'B', 'C', 'D']`. Soroljuk fel
 
 (!)-el jelöltem azokat a részsorozatokat, ahol legalább egy helyen van egy "ugrás", avagy a részsorozat két szomszédos eleme nem volt szomszédos az eredeti `L` listában.
 
-> Apró megjegyzés: létezik a részlista fogalma is. A részlisták esetében megköveteljük, hogy az eredetileg szomszédos elemek továbbra is szomszédosak maradjanak.  
-> Ennek megfelelően a (!)-el jelölt listák nem lennének az eredeti `L` lista részlistái, ők csak részsorozatokat alkotnak `L`-ben.  
-> Ebben a cikkben a részlistákkal többet nem fogunk foglalkozni, azok egészen más feladatok megoldására hasznlhatóak.
+> Megjegyzés:  
+létezik a részlista fogalma is. A részlisták esetében megköveteljük, hogy az eredetileg szomszédos elemek továbbra is szomszédosak maradjanak.  
+Ennek megfelelően a (!)-el jelölt listák nem lennének az eredeti `L` lista részlistái, ők csak részsorozatokat alkotnak `L`-ben.  
+Ebben a cikkben a részlistákkal többet nem fogunk foglalkozni, azok egészen más feladatok megoldására hasznlhatóak.
 
 ### Közös részsorozat?
 
@@ -74,9 +72,8 @@ Ha már tudjuk azt, hogy mi az a részsorozat, nem nehéz megérteni a közös r
 
 Vegyünk kettő listát, `L1`-et és `L2`-őt. Ekkor egy harmadik `L'` lista közös részsorozata `L1`-nek és `L2`-nek, ha mindkettejüknek részsorozata.
 
-Legyen például `L1 = ['A', 'B', 'C']` és `L2 = ['B', 'C', 'D']`.
+Legyen például `L1 = ['A', 'B', 'C']` és `L2 = ['B', 'C', 'D']`. Ekkor az alábbi részsorozatok találhatók meg mindkettő listában:
 
-Ekkor az alábbi részsorozatok találhatók meg mindkettő listában:
   - `['B']`
   - `['C']`
   - `['B', 'C']`
@@ -87,9 +84,7 @@ A fenti fogalmak birtokában a leghosszabb közös részsorozatot definiálni m�
 
 Vegyünk kettő listát, `L1`-et és `L2`-őt. Ekkor a két lista leghosszabb közös részsorozata az összes közös részsorozatuk közül a leghosszabb.
 
-Legyen például megint `L1 = ['A', 'B', 'C']` és `L2 = ['B', 'C', 'D']`.
-
-Azt már fent láttuk, hogy ennek a két listának 3 közös részsorozata van, ezek közül a leghosszabb: `L' = ['B', 'C']`.
+Legyen például megint `L1 = ['A', 'B', 'C']` és `L2 = ['B', 'C', 'D']`. Azt már fent láttuk, hogy ennek a két listának 3 közös részsorozata van, ezek közül a leghosszabb: `L' = ['B', 'C']`.
 
 ## Az LCS probléma (még egyszer)
 
@@ -108,15 +103,14 @@ A dinamikus programozást a számítástechnika ősi idejében, az 1950-es évek
 
 A módszer lényege a következő: egy valamilyen matematikai problémára szeretnénk algoritmikus megoldást találni. A célunk az, hogy az eredeti problémát felbontsuk több, önmagához hasonlító kisebb problémára, majd azokat tovább bontsuk rekurzívan, amíg egy triviálisan megoldható problémát kapunk.
 
-Ha valaki emlékszik a korábbi programozás tanulmányaira, akkor felidézhet hasonló algoritmusokat: elsőként a Fibonacci számsorozat, és a gyorsrendezés (quicksort) juthat eszünkbe.
-
-Az előző kettő algoritmusból azonban csak az egyik, a Fibonacci számsor kiszámítása igazi dinamikus programozás: 
+Ha valaki emlékszik a korábbi programozás tanulmányaira, akkor felidézhet hasonló algoritmusokat: elsőként a Fibonacci számsorozat, és a gyorsrendezés (quicksort) juthat eszünkbe. Ebből a kettő algoritmusból azonban csak az egyik, a Fibonacci számsor kiszámítása igazi dinamikus programozás: 
   - A Fibonacci számsor kiszámításakor az `n.` elem kiszámításához az `n-1.` és `n-2.` elem értékére van szükségünk. Ez a két részprobléma nehézségben és jellegében is hasonlít az eredeti problémára.
   - A quicksort alkalmazásakor a kezdetben megkapott listát minden lépésben megfelezzük, és a kapott részlistákat rendezzük a quicksort rekurzív meghívásával.  Ez a megoldás bár a quciksortot hívja meg rekurzívan, azonban a kapott új részproblémák jóval egyszerűbbek az eredetinél. Ez az oka annak, hogy nem tekintjük dinamikus programozási algoritmusnak a quicksort-ot.
 
-> Kicsit pontosabban definiálva a fenti érvelést: a dinamikus programozás esetén megköveteljük, hogy a keletkező részproblémák  "átfedőek" legyenek.  
-> Ez a Fibonacci számsor esetében teljesül: az `n-2.` elem kiszámítására mind az `n-1.`, mind az `n.` elem kiszámítására szükségünk van.  
-> A quciksort esetén ha a tömb első rendezését elvégeztük, majd elkezdjük a résztömböket rendezni, az új részproblémák egymástól teljesen függetlenek. Emiatt ebben az esetben a részproblémák nem "átfedőek".
+> Megjegyzés:  
+A fenti érvelést kissé pontosabban megfogalmazva: a dinamikus programozás esetén megköveteljük, hogy a keletkező részproblémák  "átfedőek" legyenek.  
+Ez a Fibonacci számsor esetében teljesül: az `n-2.` elem kiszámítására mind az `n-1.`, mind az `n.` elem kiszámítására szükségünk van. Így a könnyebb problémák "átfedésben" vannak egymással.
+A quciksort esetén előbb a tömb első rendezését végezzül el, majd elkezdjük a résztömböket rendezni. Ekkor a résztömbök rendezése egymástól teljesen független feladat -  az új részproblémák egymástól függetlenek. Emiatt ebben az esetben a részproblémák nem "átfedőek".
 
 ### Általános technikák dinamikus programozásban
 

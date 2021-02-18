@@ -25,7 +25,7 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 740px;
+  max-width: 1050px;
   padding: 0 10px;
   width: 100%;
 }
@@ -66,6 +66,7 @@ h4 {
 
 p {
   margin: 15px 0;
+  text-align: justify;
 }
 
 a {
@@ -253,11 +254,10 @@ nav {
 
 .post {
   blockquote {
-    margin: 1.8em .8em;
+    margin: 1.8em 0em;
     border-left: 2px solid $gray;
     padding: 0.1em 1em;
     color: $gray;
-    font-size: 22px;
     font-style: italic;
   }
 
