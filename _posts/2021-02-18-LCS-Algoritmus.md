@@ -152,6 +152,7 @@ A lehetséges egyszerűsítések mellett még meg kell határoznunk a triviális
   1. Egy üres, és egy nem üres lista leghosszabb lista leghosszabb közös részsorozatának hossza szintén 0.
 
 A következő ábrán egy rövid példán látható az algoritmus futása:
+
 ![Example flowchart](/images/articles/lcs_algoritmus/02_flowchart.png)
 
 Ezzel igazából meg is vagyunk az algoritmus megtervezésével, már csak annyi maradt hátra, hogy lekódoljuk magát az algoritmust. Ezt először rekurzív függvényhívásokkal fogjuk elvégezni, majd a rekurzív függvényhívások helyett egy kétdimenziós tömbben tároljuk el a részeredményeket.
