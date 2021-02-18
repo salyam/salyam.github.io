@@ -3,7 +3,7 @@ layout: post
 title: LCS algoritmus
 ---
 
-Ebben a posztban egy híres problémáról, és a megoldásáról fogok írni: kettő lista leghosszabb közös részsorozatát fogjuk meghatározni.
+Ebben a posztban algoritmuselmélettel, dinamikus programozással, és egy híres problémával fogunk foglalkozni.
 
 Ezt a leírást elsősorban a BME 4. féléves Algoritmuselmélet tárgyának hallgatói számára készítettem.  
 Természetesen mások számára is hasznos lehet, de a cikk írásánál azzal az előfeltételezéssel éltem, hogy a fő célközönség már elvégezte a BME mérnökinformatikus szak első 3 félévét.
