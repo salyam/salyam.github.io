@@ -305,7 +305,7 @@ int main()
 ```
 
 Ha a fenti programban szereplő ideiglenes tömböt kiírjuk a konzolra, a következő eredményt kapjuk:
-```
+```c
      A l g o r i t h m _ t h e o r y _ i s _ n o t _ t h a t _ h a r d .
    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 I  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
