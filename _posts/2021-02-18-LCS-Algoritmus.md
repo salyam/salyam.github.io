@@ -13,6 +13,7 @@ Ebben a posztban algoritmuselmélettel, dinamikus programozással, és egy híre
   - [A dinamikus programozásról általában](#a-dinamikus-programozásról-általában)
     - [Általános technikák dinamikus programozásban](#általános-technikák-dinamikus-programozásban)
   - [Tervezzünk algoritmust!](#tervezzünk-algoritmust)
+  - [Alakítsuk át az algoritmust!](#alakítsuk-át-az-algoritmust)
 
 Valószínűleg mindenki, aki valaha is foglalkozott programozással, találkozott már olyan eszközökkel, ami két programkód közötti különbségeket képes kiemelni. Ezt a különbséget angolul diff-ként szokás emlegetni, ami sokat segíthet, ha például egy szöveg két változata közti különbségeket akarjuk megjeleníteni.
 
@@ -301,4 +302,35 @@ int main()
   auto length = lcs(str1.begin(), str1.end(), str2.begin(), str2.end());
   std::cout << "The longest common subsequence of '" << str1 << "' and '" << str2 << "' is " << length << " long" << std::endl ;
 }
+```
+
+Ha a fenti programban szereplő ideiglenes tömböt kiírjuk a konzolra, a következő eredményt kapjuk:
+```
+     A l g o r i t h m _ t h e o r y _ i s _ n o t _ t h a t _ h a r d .
+   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+I  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+_  0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+<  0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+3  0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+_  0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+d  0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3
+y  0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3
+n  0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+a  0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 4 4
+m  0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 4 4
+i  0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 2 2 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4
+c  0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 2 2 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4
+_  0 0 0 0 0 0 1 1 1 1 2 2 2 2 2 2 2 3 3 3 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5
+p  0 0 0 0 0 0 1 1 1 1 2 2 2 2 2 2 2 3 3 3 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5
+r  0 0 0 0 0 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 4 4 4 4 5 5 5 6 6 6
+o  0 0 0 0 1 1 1 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5 5 5 5 5 5 5 5 6 6 6
+g  0 0 0 1 1 1 1 1 1 1 2 2 2 2 3 3 3 3 3 3 4 4 5 5 5 5 5 5 5 5 5 5 6 6 6
+r  0 0 0 1 1 2 2 2 2 2 2 2 2 2 3 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 6 6 6
+a  0 0 0 1 1 2 2 2 2 2 2 2 2 2 3 4 4 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6 6 6 6
+m  0 0 0 1 1 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6 6 6 6
+m  0 0 0 1 1 2 2 2 2 3 3 3 3 3 3 4 4 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6 6 6 6
+i  0 0 0 1 1 2 3 3 3 3 3 3 3 3 3 4 4 4 5 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6
+n  0 0 0 1 1 2 3 3 3 3 3 3 3 3 3 4 4 4 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+g  0 0 0 1 1 2 3 3 3 3 3 3 3 3 3 4 4 4 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6
+.  0 0 0 1 1 2 3 3 3 3 3 3 3 3 3 4 4 4 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 7
 ```
