@@ -247,7 +247,7 @@ Ezek alapján egy teljes, működőképes kód:
 ```cpp
 #include <iostream>
 #include <string>
-#include<algorithm>
+#include <algorithm>
 
 template<typename ITERATOR>
 int lcs(ITERATOR begin1, ITERATOR end1, ITERATOR begin2, ITERATOR end2)
